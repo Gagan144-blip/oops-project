@@ -1,26 +1,25 @@
 #include<iostream>
 using namespace std;
-class base {
-    public:
-    virtual void show() {
-        cout << "Base class show function called." << endl;
+class Student {
+    public: int roll_no;
+    string name;
+    float marks[10];
+    void getdata(){
+        cout<<"Enter Student Roll Number: ";
+        cin>>roll_no;
+        cout<<"Enter Student name: ";
+        cin>>name;
+        cout<<"Enter Student marks in 5 subjects: ";
+        for(int i=0;i<5;i++){
+            cin>>marks[i];
+        }
     }
-    // Virtual destructor so derived objects are destroyed correctly
-    virtual ~base() = default;
-};
-class derived : public base {
-    public:
-    void show() override {
-        cout << "Derived class show function called." << endl;
+    void compute_total(){
+        float total=0;
+        for(int i=0;i<5;i++){
+            total+=marks[i];
+        }
+        cout<<"Total marks of "<<name<<" (Roll No: "<<roll_no<<") is: "<<total<<endl;
     }
+
 };
-int main() {
-    base* bptr;
-    derived d;
-    bptr = &d;
-
-    // Virtual function call - because show() is virtual, this calls derived::show()
-    bptr->show(); // Calls derived class show function
-
-    return 0;
-}
